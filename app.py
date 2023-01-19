@@ -1,18 +1,12 @@
 import streamlit as st
-from PIL import Image
 
-st.set_theme('dark')
+st.title("平均値計算アプリ")
 
-st.title("Guitar Gallery")
+numbers = st.text_input("数値を入力してください (カンマ区切り)")
 
-# Add a selectbox to the sidebar
-guitars = ["Gibson Les Paul", "Fender Stratocaster", "Ibanez RG"]
-guitar_choice = st.sidebar.selectbox("Select a guitar", guitars)
-
-# Show the selected image
-if guitar_choice == "Gibson Les Paul":
-    st.image("gibson_les_paul.jpg")
-elif guitar_choice == "Fender Stratocaster":
-    st.image("fender_stratocaster.jpg")
-elif guitar_choice == "Ibanez RG":
-    st.image("ibanez_rg.jpg")
+if numbers:
+    num_list = list(map(int, numbers.split(",")))
+    avg = sum(num_list) / len(num_list)
+    st.write("平均値: ", avg)
+else:
+    st.write("数値を入力してください")
